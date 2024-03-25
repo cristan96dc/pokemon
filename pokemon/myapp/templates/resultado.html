@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Referencia al archivo CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script> <!-- Referencia al archivo JavaScript -->
+    <style>
+        .content-container {
+            position: relative; /* Asegura que la posición absoluta de la imagen sea relativa a este contenedor */
+        }
+        #logo {
+            position: absolute; /* Posición absoluta para la imagen */
+            top: -50px; /* Ajusta la posición vertical de la imagen */
+            left: 40px;
+            width: 200px;
+            height: auto;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="download-container">
+        <button id="download-btn">Descargar como PDF</button>
+    </div>
+
+    <div class="content-container">
+        <div class="header">
+            <!-- Primera imagen -->
+            <img src="{% static 'img/pok.png' %}" alt="INA Logo" id="logo">
+        </div>
+        <div class="content">
+            <h3>ENTRENADOR POKEMON</h3>
+            <div style="margin-bottom: 50px;"></div>
+            <h4 class="center-heading">Al Servicio Médico del Centro Pokemon:</h4>
+            <p>Solicito a ese Servicio quiera tener a bien de disponer del Pokemon</p> <p> {{ nombre_usuario }}, quien se encontraría dentro de lo previsto por el Artículo {{ licencia_numero }}  </p> <p>insistiendo por  tal  motivo al habitual desempeño de sus competencias desde el día </p> <p> {{ fecha_inicio }} hasta el {{ fecha_finalizacion }} Inclusive.</p>
+            <p>En ocasión de justificar dicha inasistencia y de regreso al desempeño de su combate  </p> <p> habituales en el enfrentamiento , el entrenador presenta certificado médico de fecha </p> <p>{{ fecha_presentacion }} que se adjunta a la presente.</p>
+            <!-- Primera instancia de FIRMA Y SELLO -->
+            <div class="firma-sello">
+                <div style="margin-bottom: 100px;"></div>
+                <h5>FIRMA Y SELLO</h5>
+            </div>
+            <hr>
+            
+            <div class="firma-sello">
+                <h3>MEDICO POKEMON</h3> 
+                <!-- Segunda imagen con un id diferente -->
+               <!-- <img src="{% static 'img/pok.png' %}" alt="Segunda Imagen" id="segunda-imagen">-->
+            </div>
+            
+            
+            <p>Al Responsable del Dto. Personal del INA</p>
+            <p>Al Pokemon <strong>{{ nombre_usuario }}</strong>, cuyos antecedentes clínicos quedan</p> <p> archivados en este Servicio, le corresponde los beneficios acordados por el Artículo {{ licencia_numero }}.</p>
+            <h4 class="left-heading">{{ licencia_nombre }}</h4>
+            <p>Desde el día {{ fecha_inicio }} hasta el {{ fecha_finalizacion }} inclusive.</p>
+            <!-- Tercera instancia de FIRMA Y SELLO -->
+            <div class="firma-sello">
+                <div style="margin-bottom: 100px;"></div>
+                <h5>FIRMA Y SELLO</h5>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            var options = {
+                margin: 20,
+                filename: 'formulario.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    pagebreak: { mode: 'avoid-all' } 
+                }
+            };
+
+            var element = document.querySelector('.content-container');
+
+            html2pdf()
+                .set(options)
+                .from(element)
+                .save();
+        });
+    </script>
+</body>
+</html>

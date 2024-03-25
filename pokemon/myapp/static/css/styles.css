@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+#download-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#download-btn {
+    display: block;
+    margin-top: 10px;
+}
+
+.content-container {
+    width: 21cm;
+    height: 29.7cm;
+    padding: 1cm;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.content {
+    text-align: justify;
+    line-height: 0.9;
+}
+
+.content h3 {
+    height: fit-content;
+    margin: 0 auto 2px;
+    margin-left: 200px;
+}
+
+.content h4 {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.content p {
+    margin-bottom: 10px;
+}
+
+.content hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.content .left-heading {
+    width: fit-content;
+    margin: 0 auto 2px;
+    margin-left: 0px;
+}
+
+
+
+.content h5  {
+    height: fit-content;
+    margin: 0 auto 2px;
+    margin-left: 500px;
+}
+
+

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Registros</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles2.css' %}">
+
+  
+</head>
+<body>
+    <div class="navbar">
+       
+        <a href="/">Seleccionar Licencia</a>
+      </div>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="7"><h3>Registros de Usuarios</h3></td>
+            </tr>
+            <tr>
+                <th>Número</th>
+                <th>Pokemon</th>
+                <th>POKEDEX</th>
+                <th>Licencia</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Finalización</th>
+                <th>Fecha de Presentación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ registro.nombre_usuario }}</td>
+                <td>{{ registro.numero_legajo }}</td>
+                <td>{{ registro.numero_licencia }}</td>
+                <td>{{ registro.fecha_inicio }}</td>
+                <td>{{ registro.fecha_finalizacion }}</td>
+                <td>{{ registro.fecha_presentacion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/descargar_excel/" method="post">
+        {% csrf_token %}
+        <button type="submit" name ="excel">Descargar en Excel</button>
+    </form>
+</body>
+</html>

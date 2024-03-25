@@ -1,0 +1,149 @@
+body {
+    background-color: #2196F3; /* Blue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background-color: #BBDEFB; /* Light Blue */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-wrapper {
+    background-color: #E3F2FD; /* Lighter Blue */
+    padding: 20px;
+    border-radius: 10px;
+}
+.option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.option-row button {
+    margin-left: 10px;
+}
+.licencia {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.licencia.seleccionada {
+    background-color: #3498db;
+    color: black;
+    font-weight: bold;
+    border-style: inset;
+    border-width: 3px;
+    border-color: black;
+    padding: 7px;
+    margin-right: 7px;
+}
+#nombre_usuario_seleccionado {
+    font-weight: bold;
+    background-color: #57879b; /* Celeste claro */
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.nombre-seleccionado {
+    color: green; /* Cambia el color a tu preferencia */
+}
+button {
+    background-color: #3498db; /* Color de fondo celeste */
+    color: white; /* Color del texto en blanco */
+    padding: 10px 20px; /* Espacio interno del botón */
+    border: none; /* Sin bordes */
+    border-radius: 20px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de selección */
+    transition: background-color 0.3s; /* Transición suave de color de fondo */
+}
+
+/* Estilo para botones al pasar el cursor */
+button:hover {
+    background-color: #2980b9; /* Color de fondo celeste más oscuro al pasar el cursor */
+}
+/* Estilo para los botones */
+        button[ name="confirm_selection_button"] {
+            background-color: #3498db; /* Color de fondo celeste */
+            color: white; /* Color del texto */
+            padding: 15px 30px; /* Espaciado interno */
+            border: none; /* Sin bordes */
+            border-radius: 25px; /* Bordes redondeados */
+            font-size: 18px; /* Tamaño de fuente */
+            cursor: pointer; /* Tipo de cursor */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+         
+        /* Estilo para los botones al pasar el cursor */
+        button[ name="confirm_selection_button"]:hover {
+            background-color: #2980b9; /* Color de fondo celeste más oscuro al pasar el cursor */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white; /* Fondo de la tabla en blanco */
+            border: 2px solid #ddd; /* Borde de la tabla */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            color: black; /* Color del texto dentro de la tabla */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button[name ="excel"] {
+            position: absolute; /* Posición absoluta para el botón */
+            bottom: 20px; /* Ajusta la posición vertical del botón */
+            right: 20px; /* Ajusta la posición horizontal del botón */
+            background-color: #4CAF50; /* Color de fondo verde */
+            color: white; /* Color del texto */
+            padding: 15px 30px; /* Espaciado interno */
+            border: none; /* Sin bordes */
+            border-radius: 25px; /* Bordes redondeados */
+            font-size: 18px; /* Tamaño de fuente */
+            cursor: pointer; /* Tipo de cursor */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+         
+        /* Estilo para los botones al pasar el cursor */
+        button[name ="excel"]:hover {
+            background-color: #45a049; /* Color de fondo verde más oscuro al pasar el cursor */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #fd8686;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Asegura que la barra de navegación esté sobre otros elementos */
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        /* Añade un margen superior al cuerpo para evitar que el contenido sea ocultado por la barra de navegación */
+        body {
+            margin-top: 40px; /* Puedes ajustar este valor según sea necesario */
+        }
+        

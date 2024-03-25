@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Licencia</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles2.css' %}">
+    
+ 
+    
+</head>
+<body>
+    <div class="navbar">
+       
+        <a href="/ver-registros">Ver Registros</a>
+      </div>
+      
+      
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>Seleccionar Licencia  de su Pokemon</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label for="nombre_usuario"> Pokemon:</label>
+                <input type="text" id="nombre_usuario" name="nombre_usuario" required placeholder="Nombre del Pokemon"><br><br>
+                <div id="nombre_usuario_seleccionado" style="display: none;"></div> <!-- Contenedor para mostrar el nombre seleccionado -->
+                
+                <label for="fecha_inicio">Fecha de Inicio:</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" required><br><br>
+                
+                <label for="fecha_finalizacion">Fecha de Finalización:</label>
+                <input type="date" id="fecha_finalizacion" name="fecha_finalizacion" required><br><br>
+                
+                
+                
+                <label>Tipo de Licencias:</label>
+                <div id="licencias">
+                    {% for licencia in licencias %}
+                        <div class="licencia" id="licencia_{{ licencia.id }}" onclick="seleccionarLicencia('{{ licencia.id }}')">
+                            {{ licencia.nombre }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="hidden" id="licencia_seleccionada" name="licencia_seleccionada">
+        
+                <button type="submit" name="confirm_selection_button">Confirmar Selección</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var nombres_usuarios = [
+                {% for nombre_usuario in nombres_usuarios %}
+                    "{{ nombre_usuario|escapejs }}"{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ];
+    
+            $("#nombre_usuario").autocomplete({
+                source: nombres_usuarios,
+                minLength: 1
+            });
+    
+            // Función para validar si el usuario existe en la lista de nombres de usuario
+            function validarUsuario() {
+                var nombreUsuario = $("#nombre_usuario").val();
+                if (!nombres_usuarios.includes(nombreUsuario)) {
+                    $("#nombre_usuario").removeClass("usuario-encontrado").addClass("usuario-no-encontrado");
+                    $("#nombre_usuario_seleccionado").text("El usuario no figura. Revise que su nombre sea exacto").css('display', 'block');
+                    return false; // Evitar que el formulario se envíe
+                } else {
+                    $("#nombre_usuario").removeClass("usuario-no-encontrado").addClass("usuario-encontrado");
+                    $("#nombre_usuario_seleccionado").text(nombreUsuario).css('display', 'block');
+                    return true; // Permitir que el formulario se envíe
+                }
+            }
+    
+            // Agregar la función de validación al evento de envío del formulario
+            $("form").submit(function(event) {
+                if (!validarUsuario()) {
+                    event.preventDefault(); // Evitar que el formulario se envíe si la validación falla
+                }
+            });
+    
+            // Obtener la fecha actual y establecerla en el campo de fecha
+            var fecha_actual = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+            $('#fecha_presentacion').val(fecha_actual);
+        });
+    
+        function seleccionarLicencia(numeroLicencia) {
+            // Remover la clase 'seleccionada' de todas las licencias
+            $('.licencia').removeClass('seleccionada');
+            // Agregar la clase 'seleccionada' a la licencia seleccionada
+            $('#licencia_' + numeroLicencia).addClass('seleccionada');
+            // Guardar el número de la licencia seleccionada
+            $('#licencia_seleccionada').val(numeroLicencia);
+        }
+    </script>
+</body>
+</html>
